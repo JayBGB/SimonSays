@@ -4,6 +4,7 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.Color
 
+// La clase Data contiene los datos de la aplicación
 object Data {
     var round = mutableStateOf(0);
     var sequence = mutableListOf<Int>();
@@ -19,9 +20,10 @@ object Data {
 
 
 
-    var colourNumber = Colours.values()
-    var colourPath: Color = Color.White
+    var colourNumber = Colours.values() // Array de colores
+    var colourPath: Color = Color.White // Color del botón
 
+    // State representa el estado de la aplicación
     enum class State {
         START,
         SEQUENCE,
@@ -30,6 +32,7 @@ object Data {
         FINISHED
     }
 
+    // Colours representa los colores de los botones
     enum class Colours(val colour: MutableState<Color>, val colorName: String) {
         MAGENTA(mutableStateOf(Color.Magenta), "PINK"),
         CYAN(colour = mutableStateOf(Color.Cyan), "BLUE"),

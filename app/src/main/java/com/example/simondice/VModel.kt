@@ -14,8 +14,9 @@ import kotlinx.coroutines.launch
 
 class VModel : ViewModel() {
 
-    private val tag = "COROUTINE"
+    private val tag = "COROUTINE" // for debugging
 
+    // Esta función se llama cuando se pulsa el botón de START
     fun startGame() {
         Log.d(tag, "GAME STARTING")
         Data.round.value = 0
@@ -25,6 +26,7 @@ class VModel : ViewModel() {
     }
 
 
+    // La función changeState() cambia el estado de la aplicación
     fun changeState() {
         Log.d(tag, "CHANGE APP STATE")
 
@@ -40,17 +42,20 @@ class VModel : ViewModel() {
         getState()
     }
 
+    // La función getState() devuelve el estado de la aplicación
     private fun getState(): Data.State {
         Log.d(tag, "CURRENT STATE IS: ${Data.state}")
         return Data.state
 
     }
 
+    // La función genRandomNumber() genera un número aleatorio entre 0 y 3
     private fun genRandomNumber(): Int {
         return (0..3).random()
 
     }
 
+    // La función pressButtonChangeColour() cambia el color de un botón cuando se pulsa
     @SuppressLint("SuspiciousIndentation")
     fun pressButtonChangeColour(colour: MutableState<Color>) {
         Log.d(tag, "Changes button colour when pressed")
@@ -62,6 +67,7 @@ class VModel : ViewModel() {
         }
     }
 
+    // La función darkenButtons() oscurece los botones
     private fun darkenButtons(colour: Color): Color {
         val r = (colour.red * (1 - 0.5f)).coerceIn(0f, 1f)
         val g = (colour.green * (1 -  0.5f)).coerceIn(0f, 1f)
@@ -69,16 +75,19 @@ class VModel : ViewModel() {
         return Color(r, g, b, colour.alpha)
     }
 
-    var buttonsEnabled by mutableStateOf(true)
+    var buttonsEnabled by mutableStateOf(true) // buttons are enabled by default
 
+    // La función disableButtons() deshabilita los botones
     private fun disableButtons() {
         buttonsEnabled = false
     }
 
+    // La función enableButtons() habilita los botones
     private fun enableButtons() {
         buttonsEnabled = true
     }
 
+    // La función createSequence() crea una secuencia aleatoria de colores
     fun createSequence() {
         Log.d(tag, "CREATE SEQUENCE")
         Log.d(tag, "CURRENT STATE: ${Data.state}")
@@ -86,8 +95,9 @@ class VModel : ViewModel() {
         Log.d(tag, "CREATED SEQUENCE: ${Data.sequence}")
 
 
-        disableButtons()
+        disableButtons() // disable buttons while showing the sequence
 
+        // show the sequence
         viewModelScope.launch {
 
             for (i in Data.sequence) {
@@ -103,6 +113,7 @@ class VModel : ViewModel() {
         }
     }
 
+    // La función increaseSequence() incrementa la secuencia
     fun increaseSequence(){
         if (Data.state == Data.State.SEQUENCE){
             createSequence()
@@ -115,12 +126,14 @@ class VModel : ViewModel() {
     }
 
 
+    // La función storeInputSequence() almacena la secuencia de entrada
     fun storeInputSequence(color: Int) {
         Data.inputSequence.add(color)
         Log.d(tag, "INPUT SEQUENCE: ${Data.inputSequence}")
 
     }
 
+    // La función checkSequence() comprueba si la secuencia de entrada es correcta
     fun checkSequence(): Boolean {
         val correcta : Boolean
         Data.state = Data.State.CHECKING

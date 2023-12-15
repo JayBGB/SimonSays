@@ -25,6 +25,8 @@ import androidx.compose.ui.unit.sp
 
 
 @Composable
+
+// La función Greeting() es la función principal de la aplicación
 fun Greeting(myModel: VModel) {
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -53,7 +55,7 @@ fun Greeting(myModel: VModel) {
     }
 }
 
-
+// La función Record() muestra el record de la partida
 @Composable
 fun  Record(){
     Text(
@@ -64,7 +66,7 @@ fun  Record(){
     )
 }
 
-
+// La función Ronda() muestra la ronda actual
 @Composable
 fun Ronda() {
     Text(
@@ -76,7 +78,7 @@ fun Ronda() {
 
 }
 
-
+// La función ButtonPanel() muestra los botones de la aplicación
 @Composable
 fun ButtonPanel(vModel: VModel) {
     val coloursInTwoRows = Data.Colours.values().toList().chunked(2)
@@ -98,7 +100,7 @@ fun ButtonPanel(vModel: VModel) {
     }
 }
 
-
+// La función Boton() muestra los botones de la aplicación
 @Composable
 fun Boton(color: MutableState<Color>, myModel: VModel, name: String) {
 
@@ -127,7 +129,7 @@ fun Boton(color: MutableState<Color>, myModel: VModel, name: String) {
     }
 }
 
-
+// La función StartButton() muestra el botón de START
 @Composable
 fun StartButton(myModel: VModel) {
     Button(
@@ -153,7 +155,7 @@ fun StartButton(myModel: VModel) {
         )
     }
 }
-
+// La función Send() muestra el botón de SEND
 @Composable
 fun Send(myModel: VModel) {
     Button(
